@@ -1,7 +1,21 @@
-🌍 Global Insights API
+# 🌍 HNG Stage 2 Backend — Country Currency & Exchange API
 
-## Overview
-A robust Node.js API built with Express.js and Sequelize ORM, designed to fetch, store, and serve comprehensive geographical and economic data for countries worldwide. This backend system integrates with external APIs to provide up-to-date information, including population, capital, region, currency exchange rates, and estimated GDP, while also generating visual data summaries.
+## 🧠 Overview
+This RESTful API fetches global country data and exchange rates, computes estimated GDPs, caches the data in a MySQL database, and exposes CRUD and analytics endpoints.
+
+Built with **Node.js + Express + Sequelize + MySQL**, this project fulfills all HNG Stage-2 backend requirements.
+
+---
+
+## ⚙️ Tech Stack
+- **Node.js (Express)** — Web server
+- **Sequelize ORM** — MySQL integration
+- **Axios** — External API requests
+- **Canvas** — Image generation
+- **MySQL** — Persistent data storage
+- **dotenv** — Environment variable management
+
+---
 
 ## Features
 -   **Dynamic Data Refresh**: Automatically fetches and updates country data and exchange rates from external REST APIs.
@@ -192,7 +206,10 @@ This endpoint does not require a request payload.
 This endpoint does not require a request payload.
 
 **Response**:
-Binary image data (e.g., PNG image file).
+
+
+<img width="804" height="555" alt="Screenshot 2025-10-26 205913" src="https://github.com/user-attachments/assets/164955db-8e92-41f9-bf1a-a273802f858e" />
+
 
 **Errors**:
 -   `404 Not Found`: The summary image has not been generated yet or could not be found.
