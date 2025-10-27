@@ -6,9 +6,8 @@ const Country = require('../models/countryModel'); // Import the Country model
 const { generateSummaryImage } = require('../utils/imageGenerator'); // Import image generation utility
 
 // External API URLs
-const REFRESH_URL =
-  'https://restcountries.com/v2/all?fields=name,capital,region,population,flag,currencies'; // URL to fetch country data
-const EXCHANGE_URL = 'https://open.er-api.com/v6/latest/USD'; // URL to fetch exchange rates
+const REFRESH_URL = process.env.COUNTRIES_API; // URL to fetch country data
+const EXCHANGE_URL = process.env.EXCHANGE_API; // URL to fetch exchange rates
 
 /**
  * Refreshes country data from external APIs and updates the database.
