@@ -19,13 +19,11 @@ app.use('/country', countryRoutes);
 
 // Define a simple root route
 app.get('/', (req, res) => {
-  res.send('Hello, World!'); // Send a greeting message
+  res.send('Nothing goods comes easy'); // Send a greeting message
 });
 
-// Define a test route
-app.get('/test', (req, res) => {
-  res.status(200).json({ message: 'Tested Successful' }); // Respond with a success message
-});
+
+
 
 sequelize
   .sync({ alter: true }) // <- ensures table is created or updated

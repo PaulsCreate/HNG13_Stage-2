@@ -16,8 +16,8 @@ const EXCHANGE_URL = process.env.EXCHANGE_API; // URL to fetch exchange rates
 exports.refreshCountries = async (req, res) => {
   try {
     const [countriesRes, ratesRes] = await Promise.all([
-      axios.get(COUNTRIES_API),
-      axios.get(EXCHANGE_API),
+      axios.get(REFRESH_URL),
+      axios.get(EXCHANGE_URL),
     ]);
 
     const countries = countriesRes.data;

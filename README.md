@@ -97,10 +97,17 @@ All required environment variables must be defined in `src/conf.env`:
 ### Base URL
 The base URL for all API endpoints is `http://localhost:[PORT]`. For example, if `PORT` is 3000, the base URL is `http://localhost:3000`.
 
-### Endpoints
+### API Testing with cURL
+
+You can test the API endpoints using `curl` from your terminal. Replace `[PORT]` with the actual port your server is running on (e.g., `3000`).
 
 #### GET /
 **Overview**: A simple health check endpoint to confirm the server is operational.
+
+**cURL Example**:
+```bash
+curl http://localhost:[PORT]/
+```
 
 **Response**:
 ```
@@ -109,6 +116,11 @@ Hello, World!
 
 #### GET /test
 **Overview**: A simple test endpoint to confirm basic route functionality.
+
+**cURL Example**:
+```bash
+curl http://localhost:[PORT]/test
+```
 
 **Response**:
 ```json
@@ -119,6 +131,11 @@ Hello, World!
 
 #### POST /country/refresh
 **Overview**: Initiates a comprehensive data refresh. This endpoint fetches country information from `restcountries.com` and currency exchange rates from `open.er-api.com`, then updates or inserts the data into the database. A summary image is generated asynchronously after the database update.
+
+**cURL Example**:
+```bash
+curl -X POST http://localhost:[PORT]/country/refresh
+```
 
 **Request**:
 This endpoint does not require a request payload.
@@ -137,6 +154,18 @@ This endpoint does not require a request payload.
 
 #### GET /country
 **Overview**: Retrieves a list of countries from the database. This endpoint supports filtering by region and currency code, and sorting by estimated GDP.
+
+**cURL Examples**:
+```bash
+# Get all countries
+curl http://localhost:[PORT]/country
+
+# Filter by region
+curl http://localhost:[PORT]/country?region=Africa
+
+# Filter by currency and sort by GDP descending
+curl http://localhost:[PORT]/country?currency=USD&sort=gdp_desc
+```
 
 **Request**:
 Query parameters can be used to filter and sort the results:
@@ -188,6 +217,11 @@ Example: `GET /country?region=Europe&sort=gdp_desc`
 #### GET /country/status
 **Overview**: Provides a summary of the stored country data, including the total number of countries and the timestamp of the most recent data refresh.
 
+**cURL Example**:
+```bash
+curl http://localhost:[PORT]/country/status
+```
+
 **Request**:
 This endpoint does not require a request payload.
 
@@ -201,6 +235,11 @@ This endpoint does not require a request payload.
 
 #### GET /country/image
 **Overview**: Serves the dynamically generated summary image (e.g., `summary.png`) which visualizes the overall country data status.
+
+**cURL Example**:
+```bash
+curl http://localhost:[PORT]/country/image --output summary.png
+```
 
 **Request**:
 This endpoint does not require a request payload.
@@ -216,6 +255,11 @@ This endpoint does not require a request payload.
 
 #### GET /country/:name
 **Overview**: Retrieves detailed information for a single country specified by its name.
+
+**cURL Example**:
+```bash
+curl http://localhost:[PORT]/country/Nigeria
+```
 
 **Request**:
 Path Parameter:
@@ -246,6 +290,11 @@ Example: `GET /country/Nigeria`
 
 #### DELETE /country/:name
 **Overview**: Deletes a country record from the database based on its name.
+
+**cURL Example**:
+```bash
+curl -X DELETE http://localhost:[PORT]/country/Nigeria
+```
 
 **Request**:
 Path Parameter:
