@@ -15,7 +15,7 @@ const app = express();
 app.use(express.json());
 
 // Mount country routes under the '/country' path
-app.use('/country', countryRoutes);
+app.use('/countries', countryRoutes);
 
 // Define a simple root route
 app.get('/', (req, res) => {

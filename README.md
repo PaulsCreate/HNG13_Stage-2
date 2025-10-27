@@ -129,12 +129,12 @@ curl http://localhost:[PORT]/test
 }
 ```
 
-#### POST /country/refresh
+#### POST /countries/refresh
 **Overview**: Initiates a comprehensive data refresh. This endpoint fetches country information from `restcountries.com` and currency exchange rates from `open.er-api.com`, then updates or inserts the data into the database. A summary image is generated asynchronously after the database update.
 
 **cURL Example**:
 ```bash
-curl -X POST http://localhost:[PORT]/country/refresh
+curl -X POST http://localhost:[PORT]/countries/refresh
 ```
 
 **Request**:
@@ -152,19 +152,19 @@ This endpoint does not require a request payload.
 **Errors**:
 -   `503 Service Unavailable`: Occurs if the external data sources (country or exchange rate APIs) are unreachable or return an error.
 
-#### GET /country
+#### GET /countries
 **Overview**: Retrieves a list of countries from the database. This endpoint supports filtering by region and currency code, and sorting by estimated GDP.
 
 **cURL Examples**:
 ```bash
 # Get all countries
-curl http://localhost:[PORT]/country
+curl http://localhost:[PORT]/countries
 
 # Filter by region
-curl http://localhost:[PORT]/country?region=Africa
+curl http://localhost:[PORT]/countries?region=Africa
 
 # Filter by currency and sort by GDP descending
-curl http://localhost:[PORT]/country?currency=USD&sort=gdp_desc
+curl http://localhost:[PORT]/countries?currency=USD&sort=gdp_desc
 ```
 
 **Request**:
@@ -175,7 +175,7 @@ Query parameters can be used to filter and sort the results:
     -   `gdp_desc`: Sort by `estimated_gdp` in descending order.
     -   `gdp_asc`: Sort by `estimated_gdp` in ascending order.
 
-Example: `GET /country?region=Europe&sort=gdp_desc`
+Example: `GET /countries?region=Europe&sort=gdp_desc`
 
 **Response**:
 ```json
@@ -214,12 +214,12 @@ Example: `GET /country?region=Europe&sort=gdp_desc`
 **Errors**:
 -   `500 Internal server error`: An unexpected error occurred on the server.
 
-#### GET /country/status
+#### GET /countries/status
 **Overview**: Provides a summary of the stored country data, including the total number of countries and the timestamp of the most recent data refresh.
 
 **cURL Example**:
 ```bash
-curl http://localhost:[PORT]/country/status
+curl http://localhost:[PORT]/countries/status
 ```
 
 **Request**:
@@ -233,12 +233,12 @@ This endpoint does not require a request payload.
 }
 ```
 
-#### GET /country/image
+#### GET /countries/image
 **Overview**: Serves the dynamically generated summary image (e.g., `summary.png`) which visualizes the overall country data status.
 
 **cURL Example**:
 ```bash
-curl http://localhost:[PORT]/country/image --output summary.png
+curl http://localhost:[PORT]/countries/image --output summary.png
 ```
 
 **Request**:
@@ -253,19 +253,19 @@ This endpoint does not require a request payload.
 **Errors**:
 -   `404 Not Found`: The summary image has not been generated yet or could not be found.
 
-#### GET /country/:name
+#### GET /countries/:name
 **Overview**: Retrieves detailed information for a single country specified by its name.
 
 **cURL Example**:
 ```bash
-curl http://localhost:[PORT]/country/Nigeria
+curl http://localhost:[PORT]/countries/Nigeria
 ```
 
 **Request**:
 Path Parameter:
 -   `name`: The exact name of the country (e.g., `Nigeria`).
 
-Example: `GET /country/Nigeria`
+Example: `GET /countries/Nigeria`
 
 **Response**:
 ```json
@@ -288,19 +288,19 @@ Example: `GET /country/Nigeria`
 **Errors**:
 -   `404 Not Found`: No country with the specified name was found in the database.
 
-#### DELETE /country/:name
+#### DELETE /countries/:name
 **Overview**: Deletes a country record from the database based on its name.
 
 **cURL Example**:
 ```bash
-curl -X DELETE http://localhost:[PORT]/country/Nigeria
+curl -X DELETE http://localhost:[PORT]/countries/Nigeria
 ```
 
 **Request**:
 Path Parameter:
 -   `name`: The exact name of the country to be deleted (e.g., `Nigeria`).
 
-Example: `DELETE /country/Nigeria`
+Example: `DELETE /countries/Nigeria`
 
 **Response**:
 ```json
